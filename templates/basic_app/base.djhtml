@@ -14,7 +14,7 @@
       <div class="container">
         <ul class="nav navbar-nav">
           <li>
-            <a class="navbar navbar-brand" href="{% url 'index' %}"> <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 40px;"></a>
+            <a class="navbar navbar-brand" href="{% url 'basic_app:index' %}"> <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 40px;"></a>
           </li>
           <li>
             <a class="navbar navbar-link h4" href="{% url 'admin:index' %}">
@@ -26,7 +26,13 @@
         <li>
           <a class="navbar-link h4" href="{% url 'basic_app:register' %}">Register</a>
         </li>
-      </ul>
+		{% if user.is_authenticated %}
+		<li><a class="navbar-link h4" href="{% url 'basic_app:logout' %}">Logout</a></li>
+        {% else %}
+		<li><a class="navbar-link h4" href="{% url 'basic_app:user_login' %}">Login</a></li>
+		{% endif %}
+
+	</ul>
       </div>
     </nav>
     <div class="container">
